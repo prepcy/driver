@@ -1,4 +1,5 @@
-obj-m := pps.o
+obj-m += pps_timer.o
+obj-m += pps_gpio.o
 
 KDIR :=/usr/src/linux-headers-`uname -r`/
 PWD_DIR := `pwd`
