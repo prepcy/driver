@@ -68,7 +68,7 @@ static int __init pps_init(void)
 		printk(KERN_ALERT "fail to register pps device : %d\n", pps_major);
 		return pps_major;
 	}
-#if 0
+
 	/* Creating a device class */
 	//pps_class = class_create(THIS_MODULE, CLASS_NAME);
 	pps_class = class_create(CLASS_NAME);
@@ -95,7 +95,7 @@ static int __init pps_init(void)
 		unregister_chrdev(pps_major, DEVICE_NAME);
 		printk(KERN_ALERT "fail to add pps cdev\n");
 	}
-#endif
+
 	printk(KERN_INFO "loading pps driver\n");
 	
 	/* Initialize timer */
@@ -109,11 +109,9 @@ static int __init pps_init(void)
 static void __exit pps_exit(void)
 {
 	del_timer(&pps_timer);
-#if 0
 	device_destroy(pps_class, MKDEV(pps_major, 0));
 	class_unregister(pps_class);
 	class_destroy(pps_class);
-#endif
 	unregister_chrdev(pps_major, DEVICE_NAME);
 
 	printk(KERN_INFO "unloading pps driver\n");
